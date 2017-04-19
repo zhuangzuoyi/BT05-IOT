@@ -1,0 +1,22 @@
+有这么一个想法，搭建一个属于自己的物联网，先用arduino+W5100做个原型，然后可以用esp8266等做
+2017/04/17：开始了解物联网
+通过搜索：python 物联网
+通过这篇博客了解到了IBM的Bluemix:
+http://blog.csdn.net/testcs_dn/article/details/52687326
+还有NodeRed
+http://blog.csdn.net/testcs_dn/article/details/53454895
+https://console.chinabluemix.net/chinaHome/product/iot
+搜到这篇文章，感觉也是满满干货：
+http://www.infoq.com/cn/news/2017/03/iot-weekly-84
+Intel关于python在物联网上的应用：
+https://software.intel.com/zh-cn/articles/getting-started-with-intel-iot-gateways-python
+
+PS：python在物联网的角色：终端（python在MCU上编程），服务端（用作服务器后台），还有一个设备（有联网，可以跑python）跟终端（sensor，灯等）通讯，然后再跟服务器通讯，暂且叫中转站或者网关吧
+
+还发现了这么一个平台（论坛）：随便看了下，还是慢慢的干货
+http://www.qwulian.cn/miothtml/category/iotplatform
+
+webiopi框架：控制树莓派GPIO的web框架
+http://blog.csdn.net/xukai871105/article/details/22959675
+微信&QQ物联也是个不错的选择：
+http://blog.jcix.top/2015-11-27/galileo_wechat/

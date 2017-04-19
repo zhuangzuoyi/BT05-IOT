@@ -1,0 +1,27 @@
+一直都想要建一个自己的博客，最近学了html CSS,
+要怎样的风格呢？
+风格：
+这个我还是挺喜欢的：http://rootkiter.com/goto_tags.html
+这个风格也还不错：http://codingcrush.me/2017/04/09/3d-printer-experience1/
+这个风格我都挺中意的：https://liuzhichao.com/
+要写些什么呢？
+在逛别人的博客的时候，很喜欢去看关于（about），也许是很想认识博主，是处于什么目的呢？
+
+
+
+
+
+在web方面，还有个想做的，给家人做个照片浏览器，初步计划用python flask:
+
+
+PC端的web应用如何适配到mobile端呢？
+浅谈Web自适应：http://www.cnblogs.com/constantince/p/5708930.html
+http://www.ruanyifeng.com/blog/2012/05/responsive_web_design.html
+
+
+建立web，一个关键是服务器，虽说现在一个月几十块钱的也有，我也还是负担不起，
+如果有免费的就很棒了，
+https://arukas.io/en/
+
+github建站教程：
+http://codingcrush.me/2016/11/18/configuration-of-tinyblog-jekyll/
