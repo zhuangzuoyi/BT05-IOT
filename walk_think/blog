@@ -6,14 +6,29 @@
 这个风格我都挺中意的：
 https://liuzhichao.com/
 https://bigjin.com/archives/windows-ssh-keygen.html
-要写些什么呢？
-在逛别人的博客的时候，很喜欢去看关于（about），也许是很想认识博主，是处于什么目的呢？
+2017/04/26：
+最近又碰到了许多用hexo制作的网站，估计，如果想要再次使用的话，不会再有那么多不懂得吧，毕竟，距上次弄hexo都很久了，而且也学了点前端的知识，
+比较喜欢的hexo 主题：
+    https://yxnt.github.io/page/2/
+    
 
 
 
+    
 
 
+image server：
 在web方面，还有个想做的，给家人做个照片浏览器，初步计划用python flask:
+实现：（2017/04/26）
+1、在网上找了个框架(photoswipe，通过搜“jquery mobile 图片”关键字找到的，),满足我的需求，站在前辈的肩膀上，
+在从网上找到的DEMO（http://www.wglong.com/main/artical!details?id=29）的基础上修改，经过几天的努力，
+基本上也实现了布局、功能，但也还有挺多要改的，
+2、图片显示的问题：
+    1>、在图片预览页上，由于图片的宽高不同，显示会有问题（什么问题，能描述么？），想着，能不能针对不同尺寸的图片，采用不同的class,然后再用不同的CSS描述，
+        获取图片尺寸方式：
+        竟然是用flask做后台，那就用python获取尺寸：
+            https://yxnt.github.io/2016/05/15/Pillow-Python3.5/
+            https://python-pillow.org/
 
 
 PC端的web应用如何适配到mobile端呢？
@@ -21,9 +36,22 @@ PC端的web应用如何适配到mobile端呢？
 http://www.ruanyifeng.com/blog/2012/05/responsive_web_design.html
 
 
+
+
 建立web，一个关键是服务器，虽说现在一个月几十块钱的也有，我也还是负担不起，
 如果有免费的就很棒了，
 https://arukas.io/en/
 
+
+
 github建站教程：
 http://codingcrush.me/2016/11/18/configuration-of-tinyblog-jekyll/
+
+
+
+
+    
+说起来，建博客，最主要的还是内容，要写些什么呢？
+
+
+在逛别人的博客的时候，很喜欢去看关于（about），也许是很想认识博主，是处于什么目的呢？
