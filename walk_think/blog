@@ -30,6 +30,10 @@ image server：
             https://yxnt.github.io/2016/05/15/Pillow-Python3.5/
             https://python-pillow.org/
 
+（2017、05、08:）：
+前几天加了些自己拍的照片，显示效果还可以，就是打开的时候太慢（没有webserver,直接是用flask),下一步呢，是完善还是弄个server,
+
+
 
 PC端的web应用如何适配到mobile端呢？
 浅谈Web自适应：http://www.cnblogs.com/constantince/p/5708930.html
@@ -55,3 +59,9 @@ http://codingcrush.me/2016/11/18/configuration-of-tinyblog-jekyll/
 
 
 在逛别人的博客的时候，很喜欢去看关于（about），也许是很想认识博主，是处于什么目的呢？
+
+
+
+
+2017、05、08：
+今天又安装了Hexo,这次又能走到哪一步呢？
