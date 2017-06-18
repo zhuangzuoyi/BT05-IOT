@@ -77,4 +77,76 @@ python:
 前段时间看到过一个flask做的空气检测项目，这也是我感兴趣的，从这个开始学习？
 项目GitHub（https://github.com/ypwhs/PM2.5.git）
 
+170614：开始
+在Nanopi M1上接了个温湿度传感器，并且安装了i2c-tools（apt-get install i2c-tools）测试，先写个传感器相关的吧，
+安装了setuptools,pip3,virtualenv
+
+i2cdetect -y 0检测i2c0下的传感器，
+170617：
+调通了HTU21D驱动，获取传感器数据的方式是：先写触发命令（触发检测温度或湿度），然后直接读取三个字节，前两个是数据，第三个是CRC(CRC8)checksum ,对这3个字节进场CRC8计算结果0（还没看文档确认）
+然后，想在C代码中实现Sqlite，将传感器数据保存为sqlite，然后给python,缺点是不能有实时数据，
+
+由于保存数据需要时间，可是板子上的时间有不对，因此需要调整，最简单的是跟网络同步：
+apt-get install ntpdate
+同步时间：ntpdate  0.cn.pool.ntp.org
+修改时区：cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+查看时间：date
+Linux C 获取时间代买：
+　　time_t   now;         //实例化time_t结构
+　　struct   tm     *timenow;         //实例化tm结构指针
+　　time(&now);
+　　//time函数读取现在的时间(国际标准时间非北京时间)，然后传值给now
+　　timenow   =   localtime(&now);
+　　//localtime函数把从time取得的时间now换算成你电脑中的时间(就是你设置的地区)
+　　printf("Local   time   is   %s/n",asctime(timenow));
+这段代码获取的时间是字符串，并且格式是：星期+空格+月份+空格+日+空格+时：分：秒+空格 + 年，如：“Sat Jun 17 15:09:07 2017”，因此还需要处理，或者直接使用
+
+
+
+sqlite3:
+要使用sqlite3,就要懂SQL语句，
+
+		可以把 SQL 分为两个部分：数据操作语言 (DML) 和 数据定义语言 (DDL)。
+		SQL (结构化查询语言)是用于执行查询的语法。但是 SQL 语言也包含用于更新、插入和删除记录的语法。
+		查询和更新指令构成了 SQL 的 DML 部分：
+			SELECT - 从数据库表中获取数据
+			UPDATE - 更新数据库表中的数据
+			DELETE - 从数据库表中删除数据
+			INSERT INTO - 向数据库表中插入数据
+		SQL 的数据定义语言 (DDL) 部分使我们有能力创建或删除表格。我们也可以定义索引（键），规定表之间的链接，以及施加表间的约束。
+		SQL 中最重要的 DDL 语句:
+			CREATE DATABASE - 创建新数据库
+			ALTER DATABASE - 修改数据库
+			CREATE TABLE - 创建新表
+			ALTER TABLE - 变更（改变）数据库表
+			DROP TABLE - 删除表
+			CREATE INDEX - 创建索引（搜索键）
+			DROP INDEX - 删除索引
+PS：摘自：http://www.w3school.com.cn/sql/sql_syntax.asp
+
+问题：
+如何获取数据库信息：1、是否为空；2、是否有table,
+如果数据库中没有table，执行INSERT INTO指令会怎样？
+如果数据库中已经有了table,再次执行CREATE TABLE会怎样？
+
+
+sqlite使用：
+1、如果sqlite3文件中没有table,执行INSERT INTO会出“ no such table”错误
+2、如果sqlite3文件中已经有了table，再执行INSERT INTO会出现“ table HTU21D already exists”（HTU21D table名）
+
+Linux sqlite3:
+
+linux c添加sqlite库：apt-get install libsqlite3-dev  
+
+Linux C编译时要添加-l sqlite3选项
+gcc HTU21.c -o HTU21D  -l sqlite3
+
+20170618:
+Log:
+	昨天写了个读取HTU21D数据并保存到sqlite3中的程序，虽然功能实现了，如果以后要一天24小时运行，如果出错了，怎么知道哪里出错了？
+	可以添加log功能，运行过程中，把一些记录|过程保存到log文件中，
+	目前发现两个比较有兴趣的（都是国人写的开源项目）：
+	https://github.com/HardySimpson/zlog
+	https://github.com/armink/EasyLogger
+
 前端：
