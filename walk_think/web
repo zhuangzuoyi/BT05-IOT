@@ -65,7 +65,9 @@ $ hexo d
 $ hexo new [layout] <title>
 您可以在命令中指定文章的布局（layout），默认为 post，可以通过修改 _config.yml 中的 default_layout 参数来指定默认布局。
 
-
+2017/06/26：
+	hexo的作用：就是把用markdown写的文章，转换成有一定主题的html文件，然后再发布到GitHub，这对于想建立独立博客，又不懂html,CSS,JS的人来说，是很有用的，
+	如果web开发的话，又要在github托管，感觉用hexo，
 
 python:
 到现在学了点flask,
@@ -150,3 +152,13 @@ Log:
 	https://github.com/armink/EasyLogger
 
 前端：
+
+
+
+
+
+2017/06/26：（今天又接触到了“元问题”的思维方法，是不是可以学以致用呢？）
+	解除了web这么久，终于对web开发有了个大概的了解，什么是动态网站、静态网站，前端、后端；php、python的作用，
+	现在最大的问题是：我要做些什么？
+	1、之前用python把chrome书签变为html文件，并托管在github上，有个很大的问题，就是不能对书签进行编辑，可以做个可以编辑的书签web page,
+	2、flask+爬虫，问题是要爬什么数据呢？
