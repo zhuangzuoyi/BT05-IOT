@@ -13,3 +13,19 @@ $ git config --global user.email "email@example.com"
 
 注意git config命令的--global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。
 
+
+一次添加远程创库的例子：
+	F:\2017\web\p5js>git remote add origin https://github.com/zhuangzuoyi/p5js-learn
+	ing.git
+
+	F:\2017\web\p5js>git push -u origin master
+	Username for 'https://github.com': zhuangzuoyi
+	Password for 'https://zhuangzuoyi@github.com':
+	Counting objects: 8, done.
+	Delta compression using up to 4 threads.
+	Compressing objects: 100% (7/7), done.
+	Writing objects: 100% (8/8), 3.11 KiB | 0 bytes/s, done.
+	Total 8 (delta 0), reused 0 (delta 0)
+	To https://github.com/zhuangzuoyi/p5js-learning.git
+	 * [new branch]      master -> master
+	Branch master set up to track remote branch master from origin.
