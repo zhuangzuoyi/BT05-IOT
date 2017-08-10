@@ -228,7 +228,7 @@ C是如何编译到汇编？（Cortex-M3权威指南->Cortex-M3 的低层编程)
 当使用 C 开发程序时，推荐开启 CM3 的双字对齐管理机制（在 NVIC 配置与控制寄存器中，把STKALIGN 置位），代码形如：
 	#define NVIC_CCR ((volatile unsigned long *)(0xE000ED14))
 	*NVIC_CCR ＝ *NVIC_CCR | 0x200; //设置STKALIGN位
-这是用于确保系统能严格遵守 AAPCS 过程调用标准
+这是用于确保系统能严格遵守 APCS 过程调用标准
 
 
 
@@ -252,3 +252,15 @@ PROC
 IMPORT ，定义表示这是一个外部变量的标号，不是在本程序定义的
 
 EXPORT ，表示本程序里面用到的变量提供给其他模块调用的。
+
+
+2017/
+APCS：ARM 过程调用标准(ARM Procedure Call Standard)
+
+http://www.cnblogs.com/hongzg1982/articles/2314457.html
+
+APCS 定义了:
+	对寄存器使用的限制。
+	使用栈的惯例。
+	在函数调用之间传递/返回参数。
+	可以被‘回溯’的基于栈的结构的格式，用来提供从失败点到程序入口的函数(和给予的参数)的列表。
