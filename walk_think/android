@@ -1,3 +1,15 @@
 看了这个前辈的android nfc代码，对于初学的我，有很多值得学习的：下面两个链接是他的博客&github:
 https://github.com/smartbetter?tab=repositories
 http://blog.csdn.net/smartbetter
+
+
+
+使用经验：
+2017/08/20：
+APP图标：在Androidmanifest.xml文件中变量
+	android:icon
+	设置,
+如：
+	android:icon="@drawable/wi"
+
+	

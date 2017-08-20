@@ -184,3 +184,73 @@ STM32中断：
 1、STM32(Cortex-M3)中有两个优先级的概念——抢占式优先级和响应优先级
 	先占优先级的概念等同于51单片机中的中断。假设有两中断先后触发，已经在执行的中断先占优先级如果没有后触发的中断 先占优先级更高，就会先处理先占优先级高的中断。也就是说又有较高的先占优先级的中断可以打断先占优先级较低的中断。这是实现中断嵌套的基础。
     次占优先级只在同一先占优先级的中断同时触发时起作用，先占优先级相同，则优先执行次占优先级较高的中断。次占优先级不会造成中断嵌套。 如果中断的两个优先级都一致，则优先执行位于中断向量表中位置较高的中断。
+
+
+
+
+2017/08/16：
+1、今天调试时，Flash读写又出现问题，不确定是读的问题，还是写的问题，反正是读出来的数据跟写的数据不一致，那该怎么办？有什么解决方案？
+	1、调试方法，
+		在调试过程中，突然想到，竟然不知道是写还是读的问题，那我就先把Flash中的数据确定，通过Jlink把flash中的数据确定问一定的数据，然后再用自己写的程序读出来，
+
+		或者写完数据后，通过Jlink读出Flash中的数据，就可以确定数据有没有正确的写入，
+
+		进过调试发现是读的时候出的问题，
+		原来的程序是这样：
+		void Read_Flash(u8 *buff, u8 len)
+		{
+		    u8 k=0;
+		    u32 Address;
+		    u16 *temp=NULL;
+			  u8 *te=NULL;
+				FLASH_Unlock();
+		    Address = WriteFlashAddress;
+		    for(k=0;k<len;k+=2)
+		    {
+		        temp =(*(vu16*) Address);
+						te = (u8 *)&temp;
+						if(k+2<=len)
+						{
+							buff[k+1] = *te;
+							te++;
+							buff[k]   = *te;
+						}else
+						{
+							buff[k] = *te;
+						}
+						Address += 2;
+		    }
+			FLASH_Lock();
+		}
+		更改后的程序是这样的：
+		void Read_Flash(u8 *buff, u8 len)
+		{
+		    u8 k=0;
+		    u32 Address;
+		    u16 temp;
+			  u8 *te=NULL;
+				FLASH_Unlock();
+		    Address = WriteFlashAddress;
+		    for(k=0;k<len;k+=2)
+		    {
+		        temp =*(__IO uint16_t *)Address;// (*(vu32*) Address);// (*(vu16*) Address);
+						te = (u8 *)&temp;
+						if(k+2<=len)
+						{
+							buff[k+1] = *te;
+							te++;
+							buff[k]   = *te;
+						}else
+						{
+							buff[k] = *te;
+						}
+						Address += 2;
+		    }
+				printf("\r\n");
+			FLASH_Lock();
+		}
+
+
+
+2017/08/18：
+经过测试大概25步转90度，100步360度，也就是一步3.6度
