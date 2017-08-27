@@ -180,3 +180,9 @@ Log:
 		1、调用so库的时候，注意路径，就是so库跟py文件是在同一个目录，也不能只给文件名，还有加上路径，
 		2、传参，指针
 	
+
+
+
+2017/08/27：
+一个用flask的例子：
+https://github.com/shengxinjing/my_blog/issues/2
