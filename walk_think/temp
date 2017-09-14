@@ -1,0 +1,66 @@
+BEQ:
+	如果相等就跳转
+
+
+
+RT-Thread:（基于STM32F051R8T6)
+1、main函数：
+	startup.c:
+	
+int main(void)
+{
+	/* disable interrupt first */
+	rt_hw_interrupt_disable();
+
+	/* startup RT-Thread RTOS */
+	rtthread_startup();
+
+	return 0;
+}
+
+RT-Thread配置文件：rtconfig.h
+
+
+
+异常通常可以分成两类：同步异常和异步异常。同步异常主要是指由于内部事件产生的
+异常，例如除零错误。异步异常主要是指由于外部异常源产生的异常，例如按下设备某个按
+钮产生的事件。同步异常与异步异常的区别还在于，同步异常触发后，系统必须立刻进行处
+理而不能够依然执行原有的程序指令步骤；而异步异常则可以延缓处理甚至是忽略，
+
+
+2017/09/11：
+今天接触了RT-Thread的消息队列，
+
+使用：
+1、创建，
+动态创建：rt_mq_create
+静态创建：rt_mq_init
+
+实例：
+	rx_mq =rt_mq_create("LedQueue", 20, 512, RT_IPC_FLAG_PRIO);
+	
+	if(RT_NULL == rx_mq)
+    {
+			rt_kprintf("mq create faile\r\n");
+        return -1;
+    }
+
+碰到过max_msgs值过大，会创建失败，那么，这个值该怎么取？
+如果没有进行是否创建成功判断处理，没有创建成功是会出现如下情况，
+	(mq != RT_NULL) assertion failed at function:rt_mq_recv, line number:2107
+
+2、一个线程发送，
+rt_mq_send
+
+3、一个接收，
+rt_mq_recv
+
+
+
+09/14：
+Finish：
+在原始工程中，编译完，烧进MCU后，finish无法使用命令，在键盘上按TAB键也没列出任何命令，
+打开FINSH_USING_SYMTAB宏后就可以使用，
+
+如果FINSH_USING_DESCRIPTION宏没打开，键盘上按TAB键只列出命令名字，
+如果打开了，就会列出各个命令的描述，
